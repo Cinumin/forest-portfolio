@@ -5,6 +5,10 @@ const terrain = (x, z) => .15 * Math.sin(z * .14) + Math.min(1, Math.abs(x - tra
 const range = (a, b) => a + Math.random() * (b - a)
 const clamp = T.MathUtils.clamp
 
+export const trailLength = 90
+const stopStart = 9, stopSpacing = 10
+export const stationPosition = index => stopStart + index * stopSpacing
+
 export function createForest(host, count, onSelect, onTravel) {
   const renderer = new T.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' })
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.65))
@@ -103,7 +107,7 @@ export function createForest(host, count, onSelect, onTravel) {
   const moon = new T.DirectionalLight(0xb6d7fe, 1.65)
   moon.position.set(-8, 12, -18)
   scene.add(moon)
-  const stations = Array.from({ length: count }, (_, i) => 9 + i * 12)
+  const stations = Array.from({ length: count }, (_, i) => stationPosition(i))
   const pins = stations.map((z, index) => {
     const side = index % 2 ? -1 : 1, x = trailX(z) + side * 2.48, y = terrain(x, z)
     inst(trunks, x, y + .86, z, .085, 1.72, .085)
@@ -154,7 +158,7 @@ export function createForest(host, count, onSelect, onTravel) {
   let drag = null
   const keys = new Set()
   const nearest = () => {
-    const i = clamp(Math.round((z + 4.3 - stations[0]) / 12), 0, stations.length - 1)
+    const i = clamp(Math.round((z + 4.3 - stopStart) / stopSpacing), 0, stations.length - 1)
     if (i !== active) { active = i; onSelect(i) }
   }
   const resize = () => {
@@ -208,7 +212,7 @@ export function createForest(host, count, onSelect, onTravel) {
     last = now
     const moveAlong = Number(keys.has('w') || keys.has('arrowup')) - Number(keys.has('s') || keys.has('arrowdown'))
     const turn = Number(keys.has('a') || keys.has('arrowleft')) - Number(keys.has('d') || keys.has('arrowright'))
-    if (moveAlong) { z = clamp(z + moveAlong * dt * 6, 0, 90); target = z; nearest() }
+    if (moveAlong) { z = clamp(z + moveAlong * dt * 6, 0, trailLength); target = z; nearest() }
     else z = motion.matches ? target : T.MathUtils.damp(z, target, 3.6, dt)
     yaw -= turn * dt * 1.2
     const x = trailX(z), bearing = Math.atan2(trailX(z + 5) - x, 5)

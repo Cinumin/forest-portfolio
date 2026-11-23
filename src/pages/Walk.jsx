@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { createForest } from './forestScene'
+import { createForest, stationPosition, trailLength } from './forestScene'
 import { ProjectContent } from './Gallery'
 import { projects } from './projectData'
 
@@ -12,7 +12,7 @@ export default function Walk() {
     let fallbackFrame
     try {
       forest.current = createForest(host.current, projects.length, setActive, z => {
-        location.current?.setAttribute('cx', String(10 + z / 90 * 160))
+        location.current?.setAttribute('cx', String(10 + z / trailLength * 160))
       })
     } catch {
       fallbackFrame = requestAnimationFrame(() => setFailed(true))
@@ -33,7 +33,7 @@ export default function Walk() {
         <h2 aria-live="polite">{project.title}</h2><ProjectContent key={project.title} project={project}/>
         <svg className="walk-map" viewBox="0 0 180 28" width="100%" height="32" aria-label="Position along the forest trail">
           <path d="M10 14H170" stroke="#50799c" strokeWidth="2"/>
-          {projects.map((p, i) => <circle key={p.title} cx={10 + (9 + i * 12) / 90 * 160} cy="14" r="3" fill={i === active ? '#ffd9a8' : '#8cb6d6'}/>)}
+          {projects.map((p, i) => <circle key={p.title} cx={10 + stationPosition(i) / trailLength * 160} cy="14" r="3" fill={i === active ? '#ffd9a8' : '#8cb6d6'}/>)}
           <circle ref={location} cx="12" cy="14" r="3.5" fill="white"/>
         </svg>
         <div className="walk-steps">{projects.map((p, i) => <button key={p.title} aria-label={p.title} aria-current={i === active} onClick={() => forest.current?.seek(i)}>{i + 1}</button>)}</div>
