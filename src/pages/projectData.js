@@ -1,5 +1,5 @@
 export const projects = [
-  { title: 'Washington DC', group: 'Film & Video', file: 'washington-dc-hd', description: 'A short film from a spring break trip to Washington, DC.' },
+  { title: 'Washington DC', group: 'Film & Video', file: 'washington-dc-720', description: 'A short film from a spring break trip to Washington, DC.' },
   { title: 'Garden Study', group: 'Film & Video', file: 'garden-study-4k', description: 'A short film set in a garden.' },
   { title: 'The Beauty of Still Shots', group: 'Film & Video', file: 'still-shots-hd', description: 'A study of stillness, light, and movement.' },
   { title: 'Museum Study', group: 'Film & Video', file: 'museum-study-new', description: 'A short film about looking closely at paintings.' },
