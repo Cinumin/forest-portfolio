@@ -1,5 +1,7 @@
+import { createElement } from 'react'
 import { Link } from 'react-router-dom'
 import { projects } from './projectData'
+import artwork from './artwork.json'
 
 export function ProjectContent({ project }) {
   const media = import.meta.env.BASE_URL + 'project-media/'
@@ -10,15 +12,41 @@ export function ProjectContent({ project }) {
   </>
 }
 
+const artGroups = ['Paintings', 'Drawings', 'Graphic Design']
+
+function ArtworkGrid({ group }) {
+  const media = import.meta.env.BASE_URL + 'artwork/'
+  return <div className="artwork-grid">
+    {artwork.filter(work => work.group === group).map(({ id, title, alt, width, height }) =>
+      <figure className="artwork-piece" key={id}>
+        <a href={media + id + '.jpg'} target="_blank" rel="noreferrer" aria-label={`View ${title} larger (opens in a new tab)`}>
+          <img src={media + id + '-thumb.jpg'} alt={alt} width={width} height={height} loading="lazy" decoding="async"/>
+        </a>
+        <figcaption>{title}</figcaption>
+      </figure>)}
+  </div>
+}
+
+function ProjectGrid({ group, heading = 'h3' }) {
+  return <div className="project-grid">{projects.filter(project => project.group === group).map(project =>
+    <article key={project.title}>{createElement(heading, null, project.title)}<ProjectContent project={project}/></article>)}</div>
+}
+
 export default function Gallery() {
   return <main className="paper">
     <header className="page-nav"><Link to="/">Angela Zhao</Link><Link to="/Projects">Forest walk</Link></header>
     <h1>Projects</h1>
-    {['Film & Video', 'Design & Development', 'Data Analysis'].map(group => <section key={group}>
-      <h2>{group === 'Film & Video' ? 'Art Portfolio' : group}</h2>
-      {group === 'Film & Video' && <p className="eyebrow">Film &amp; Video</p>}
-      <div className="project-grid">{projects.filter(p => p.group === group).map(project =>
-        <article key={project.title}><h3>{project.title}</h3><ProjectContent project={project}/></article>)}</div>
+    <section aria-labelledby="art-portfolio-title">
+      <h2 id="art-portfolio-title">Art Portfolio</h2>
+      {artGroups.map(group => <div className="artwork-group" key={group}>
+        <h3>{group}</h3>
+        <ArtworkGrid group={group}/>
+      </div>)}
+      <div className="artwork-group"><h3>Film &amp; Video</h3><ProjectGrid group="Film & Video" heading="h4"/></div>
+    </section>
+    {['Design & Development', 'Data Analysis'].map(group => <section key={group}>
+      <h2>{group}</h2>
+      <ProjectGrid group={group}/>
     </section>)}
   </main>
 }

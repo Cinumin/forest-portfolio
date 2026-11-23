@@ -1,0 +1,146 @@
+[
+  {
+    "group": "Paintings",
+    "id": "fragility-of-youth",
+    "title": "Fragility of Youth",
+    "alt": "A portrait framed by foliage, flowers, and butterflies.",
+    "width": 507,
+    "height": 640
+  },
+  {
+    "group": "Paintings",
+    "id": "fragility-of-youth-detail",
+    "title": "Fragility of Youth (detail)",
+    "alt": "Close-up of a butterfly and flowers within the painted foliage.",
+    "width": 480,
+    "height": 640
+  },
+  {
+    "group": "Paintings",
+    "id": "summer-dreaming",
+    "title": "Summer Dreaming",
+    "alt": "A figure with a book sits in a tree among sunlit leaves.",
+    "width": 466,
+    "height": 640
+  },
+  {
+    "group": "Paintings",
+    "id": "icelandic-river",
+    "title": "Icelandic River",
+    "alt": "A blue river winds through green fields beneath mountains and clouds.",
+    "width": 640,
+    "height": 506
+  },
+  {
+    "group": "Paintings",
+    "id": "pointe-shoes",
+    "title": "Pointe Shoes",
+    "alt": "Pale ballet shoes and looping ribbons on a dark ground.",
+    "width": 640,
+    "height": 531
+  },
+  {
+    "group": "Paintings",
+    "id": "horse-and-rider",
+    "title": "Horse and Rider",
+    "alt": "A young rider stands beside a chestnut horse in dappled light.",
+    "width": 479,
+    "height": 640
+  },
+  {
+    "group": "Paintings",
+    "id": "dancer-and-koi",
+    "title": "Dancer and Koi",
+    "alt": "A dancer in white above a pond with koi and lily pads.",
+    "width": 477,
+    "height": 640
+  },
+  {
+    "group": "Paintings",
+    "id": "paper-cranes",
+    "title": "Paper Cranes",
+    "alt": "A child in blue folds paper beneath a flying crane.",
+    "width": 477,
+    "height": 640
+  },
+  {
+    "group": "Drawings",
+    "id": "pagoda-study",
+    "title": "Pagoda Composition",
+    "alt": "A monochrome composition with a pagoda, a toy, and eyeglasses.",
+    "width": 509,
+    "height": 640
+  },
+  {
+    "group": "Drawings",
+    "id": "composition-studies-1",
+    "title": "Composition Studies I",
+    "alt": "Two framed pencil studies of a still life from different viewpoints.",
+    "width": 462,
+    "height": 640
+  },
+  {
+    "group": "Drawings",
+    "id": "composition-studies-2",
+    "title": "Composition Studies II",
+    "alt": "Four pencil studies exploring angle, close-up, and asymmetry.",
+    "width": 480,
+    "height": 640
+  },
+  {
+    "group": "Drawings",
+    "id": "rose-study",
+    "title": "Rose Study",
+    "alt": "A monochrome drawing of a rose in a vase with a spiral pattern.",
+    "width": 520,
+    "height": 640
+  },
+  {
+    "group": "Graphic Design",
+    "id": "clue-poster",
+    "title": "Clue: On Stage",
+    "alt": "A green and gold theater poster with a magnifying glass and silhouettes.",
+    "width": 407,
+    "height": 640
+  },
+  {
+    "group": "Graphic Design",
+    "id": "yearbook-art-divider",
+    "title": "Art Divider · 2024–25 Yearbook",
+    "alt": "A red and charcoal editorial spread titled Setting the Stage.",
+    "width": 640,
+    "height": 404
+  },
+  {
+    "group": "Graphic Design",
+    "id": "yearbook-life-on-the-hill",
+    "title": "Life on the Hill",
+    "alt": "A photographed yearbook spread with red accents and large typography.",
+    "width": 640,
+    "height": 480
+  },
+  {
+    "group": "Graphic Design",
+    "id": "yearbook-athletics",
+    "title": "Hopkins Athletics",
+    "alt": "A sports yearbook divider with a red basketball and bold typography.",
+    "width": 640,
+    "height": 480
+  },
+  {
+    "group": "Graphic Design",
+    "id": "yearbook-portrait",
+    "title": "Portrait",
+    "alt": "A yearbook divider with mirrored type and overlapping portrait frames.",
+    "width": 640,
+    "height": 480
+  },
+  {
+    "group": "Graphic Design",
+    "id": "yearbook-goodbye",
+    "title": "Goodbye to the Hill",
+    "alt": "A graduation divider with a red paper airplane and a dashed flight path.",
+    "width": 640,
+    "height": 480
+  }
+]
