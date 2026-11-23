@@ -1,41 +1,19 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import NavigationBar from './Navbar.jsx'
-import About from './pages/About.jsx'
-import Projects from './pages/Projects.jsx'
-import Contact from './pages/Contact.jsx'
-import Home from './pages/Home.jsx'
-import { Routes, Route, HashRouter, useLocation } from "react-router-dom";
-import { AnimatePresence } from 'framer-motion';
+import { lazy, Suspense } from 'react'
+import { HashRouter, Link, Route, Routes } from 'react-router-dom'
+import Home from './pages/Home'
+import About from './pages/About'
+import Contact from './pages/Contact'
+import Gallery from './pages/Gallery'
+const Walk = lazy(() => import('./pages/Walk'))
 
-function AppContent() {
-  const location = useLocation();
-  return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/About" element={<About />} />
-        <Route path="/Projects" element={<Projects />} />
-        <Route path="/Contact" element={<Contact />} />
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </AnimatePresence>
-  );
+export default function App() {
+  return <HashRouter><Suspense fallback={<main className="paper"><p>Loading the forest…</p><Link to="/Gallery">Open project list</Link></main>}>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/About" element={<About />} />
+      <Route path="/Projects" element={<Walk />} />
+      <Route path="/Gallery" element={<Gallery />} />
+      <Route path="/Contact" element={<Contact />} />
+    </Routes>
+  </Suspense></HashRouter>
 }
-function App() {
-   return (
-    <HashRouter>
-      <div>
-        <NavigationBar></NavigationBar>
-               <AppContent />
-        <div class="container">
-        <div class="column drag"></div>
-          <div class="column zoom"></div>
-          <div class="column not-allowed"></div>
-        </div>
-      </div>
-    </HashRouter>
-      )
-}
-export default App

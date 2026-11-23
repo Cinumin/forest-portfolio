@@ -1,28 +1,12 @@
-import { motion } from 'framer-motion';
-import './About.css';
-
-const About = () => {
-    return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100%' }}>
-            <motion.div
-                className="flower-container"
-                layoutId="flower-expand"
-                transition={{ duration: 0.8, ease: [0.43, 0.13, 0.23, 0.96] }}
-            >
-                <motion.div
-                    className="about-content"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ delay: 0.6, duration: 0.6 }}
-                >
-                    <h2>About Me</h2>
-                    <p>Hello! I'm Angela Zhao, a passionate web developer and gardener. I love creating beautiful and functional web applications while nurturing my garden.</p>
-                    <p>In my free time, I enjoy exploring new technologies, hiking, and experimenting with new plant species in my garden.</p>
-                </motion.div>
-            </motion.div>
-        </div>
-    );
-};
-
-export default About;
+import { Link } from 'react-router-dom'
+import resume from './resume.json'
+export default function About() {
+  return <main className="paper"><header className="page-nav"><Link to="/">Angela Zhao</Link><Link to="/Projects">Projects</Link></header>
+    <div className="about-intro"><div><p className="eyebrow">About Me</p><h1>A curious mind,<br/>many ways to create.</h1><p>Hello, I’m Angela. I’m studying applied mathematics at Columbia College and work across art, design, and software.</p></div>
+      <img src={import.meta.env.BASE_URL+'forest/painting.jpg'} alt="Detail of Angela’s painted snowy forest"/></div>
+    <h2>Résumé</h2>
+    {resume.map(({ title, rows }) => <section className="resume-section" key={title}><h3>{title}</h3>
+      {rows.map(row => row.url ? <p key={row.text}><a href={row.url}>{row.text}</a></p> : <p key={row.text}>{row.text}</p>)}
+    </section>)}
+  </main>
+}

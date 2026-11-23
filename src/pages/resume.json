@@ -1,0 +1,136 @@
+[
+  {
+    "title": "Education",
+    "rows": [
+      {
+        "text": "Columbia University, Columbia College, New York, NY Expected May 2029"
+      },
+      {
+        "text": "• GPA: 3.84, SAT: 1580, B.A., Major: Applied Mathematics"
+      }
+    ]
+  },
+  {
+    "title": "Experience",
+    "rows": [
+      {
+        "text": "Runway 7 Fashion, New York, NY"
+      },
+      {
+        "text": "Designer Coordinator September 2026"
+      },
+      {
+        "text": "• Served as primary contact for 3 designers, coordinating fittings, show logistics, arrivals, and updates."
+      },
+      {
+        "text": "• Managed model assignments and backstage readiness in Google Sheets, troubleshooting logistical issues with designers and production."
+      },
+      {
+        "text": "Designer Assistant February 2026"
+      },
+      {
+        "text": "• Supported 2-3 designers per show day across 3 full days (6am-7pm), assisting with ironing, styling fixes, and quick changes for casts of 4-10 models, including children."
+      },
+      {
+        "text": "• Handled backstage logistics for 20+ looks, resolving last-minute changes and facilitating communication among designers, coordinators, and models under tight timing."
+      },
+      {
+        "text": "Global Career Accelerator (Coding for Data), Trainee, Remote June 2026 - August 2026"
+      },
+      {
+        "text": "• Applied SQL, Python, and pandas across datasets from Crunchbase, YouTube, NASA, the Olympics, Intel, and the Grammys, performing data cleaning, querying, and exploratory analysis to derive business insights."
+      },
+      {
+        "text": "Yearbook Club, Lead Design Editor, New Haven, CT September 2023 - May 2025"
+      },
+      {
+        "text": "• Designed layout templates and dividers in Photoshop, standardizing the visual system across 288 pages."
+      },
+      {
+        "text": "• Led a 6-person design team through revisions and production milestones to deliver the book on schedule."
+      },
+      {
+        "text": "MoCA Westport, Intern, Westport, CT June 2023 - August 2023"
+      },
+      {
+        "text": "• Organized partnership data for 20+ museums and nonprofits across Connecticut in Google Sheets, supporting grant research and application preparation."
+      },
+      {
+        "text": "• Independently managed weekend museum operations, including front desk duties and opening/closing procedures; supported a public gallery opening and prepared materials for the summer camp program."
+      }
+    ]
+  },
+  {
+    "title": "Projects",
+    "rows": [
+      {
+        "text": "Personal Portfolio (React, JavaScript) Present",
+        "url": "https://cinumin.github.io/myportfolio/"
+      },
+      {
+        "text": "• Built and deployed a responsive portfolio site with React + Vite, designed in Figma."
+      },
+      {
+        "text": "Spelltracker July 2026 - August 2026",
+        "url": "https://github.com/Cinumin/spell_tracker"
+      },
+      {
+        "text": "• Built a real-time hand-tracking prototype that recognizes two Chinese characters (\"dirt\" and \"fire\") from a webcam, providing real-time recognition feedback."
+      },
+      {
+        "text": "Analyzing Website Performance for The Grammys August 2026",
+        "url": "https://github.com/Cinumin/Analyzing-Website-Performance-for-The-Grammys"
+      },
+      {
+        "text": "• Analyzed 6+ years of web traffic data across two Recording Academy sites using Python/pandas, finding pages per session rose from ~1.5 to 2.0+ after the sites split and recommending retaining it."
+      },
+      {
+        "text": "Sustainability Impact Analysis - Intel July 2026",
+        "url": "https://drive.google.com/file/d/11ViIvdFbU8174UK9IMJee2Z-OVbzkXNe/view?usp=sharing"
+      },
+      {
+        "text": "• Analyzed 601K+ repurposed devices using SQL joins and regional/device-type segmentation, quantifying 6,768+ tons of annual CO₂ savings and identifying differences in environmental impact across regions."
+      }
+    ]
+  },
+  {
+    "title": "Organizations And Activities",
+    "rows": [
+      {
+        "text": "Columbia Space Initiative, Developer (Artificial Intelligence Assistant Subteam), New York, NY January 2026 - May 2026"
+      },
+      {
+        "text": "• Prototyped a Unity-based chat interface for NASA’s SUITS, enabling astronaut interaction with an AI assistant."
+      },
+      {
+        "text": "• Collaborated with a 6-person team, communicating UI requirements for front-end integration."
+      },
+      {
+        "text": "Hopkins Drama Association, Director and Tech, New Haven, CT September 2022 - May 2025"
+      },
+      {
+        "text": "• Directed rehearsals and led auditions for a theatrical production, coordinating with 15+ cast and crew members."
+      },
+      {
+        "text": "• Created promotional graphics in Procreate that supported ticket marketing campaigns."
+      }
+    ]
+  },
+  {
+    "title": "Skills",
+    "rows": [
+      {
+        "text": "Programming: Python, Java, SQL"
+      },
+      {
+        "text": "Libraries: pandas, Plotly"
+      },
+      {
+        "text": "Tools: DaVinci Resolve, Procreate, Google Workspace"
+      },
+      {
+        "text": "Languages: English, Chinese"
+      }
+    ]
+  }
+]
