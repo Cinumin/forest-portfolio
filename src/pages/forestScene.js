@@ -116,6 +116,25 @@ export function createForest(host, count, onSelect, onTravel) {
     scene.add(lamp)
     return marker
   })
+  // A wheel and roof at the bend echo the landmark in the painting.
+  const landmarkZ = 88, landmarkX = trailX(landmarkZ) - 3.6
+  const landmarkGround = terrain(landmarkX, landmarkZ)
+  const addMesh = (geometry, material, x, y, z) => {
+    const mesh = new T.Mesh(geometry, material)
+    mesh.position.set(x, y, -z)
+    scene.add(mesh)
+    return mesh
+  }
+  const cabin = paint({ color: 0x202e3c, roughness: 1 })
+  const rim = paint({ color: 0x536b7f, roughness: .9, metalness: .1 })
+  addMesh(new T.BoxGeometry(3.9, 2.7, 3.0), cabin, landmarkX, landmarkGround + 1.35, landmarkZ + 1.9)
+  const roof = addMesh(new T.CylinderGeometry(0, 3, 1.4, 4), snow, landmarkX, landmarkGround + 3.2, landmarkZ + 1.9)
+  roof.rotation.y = Math.PI / 4
+  addMesh(new T.TorusGeometry(1.15, .085, 6, 22), rim, landmarkX, landmarkGround + 1.25, landmarkZ + .21)
+  for (let i = 0; i < 4; i++) {
+    const spoke = addMesh(new T.BoxGeometry(.075, 2.25, .075), rim, landmarkX, landmarkGround + 1.25, landmarkZ + .21)
+    spoke.rotation.z = i * Math.PI / 4
+  }
   const motion = matchMedia('(prefers-reduced-motion: reduce)')
   const flakes = new Float32Array(690 * 3)
   for (let i = 0; i < flakes.length; i += 3) {

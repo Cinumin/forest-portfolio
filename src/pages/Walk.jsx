@@ -9,14 +9,19 @@ export default function Walk() {
   const [active, setActive] = useState(0)
   const [failed, setFailed] = useState(false)
   useEffect(() => {
+    let fallbackFrame
     try {
       forest.current = createForest(host.current, projects.length, setActive, z => {
         location.current?.setAttribute('cx', String(10 + z / 90 * 160))
       })
     } catch {
-      setFailed(true)
+      fallbackFrame = requestAnimationFrame(() => setFailed(true))
     }
-    return () => { forest.current?.destroy(); forest.current = null }
+    return () => {
+      cancelAnimationFrame(fallbackFrame)
+      forest.current?.destroy()
+      forest.current = null
+    }
   }, [])
   const project = projects[active]
   return <main className="walk">
