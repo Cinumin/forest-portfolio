@@ -19,8 +19,8 @@ function ArtworkGrid({ group }) {
   return <div className="artwork-grid">
     {artwork.filter(work => work.group === group).map(({ id, title, alt, width, height }) =>
       <figure className="artwork-piece" key={id}>
-        <a href={media + id + '.jpg'} target="_blank" rel="noreferrer" aria-label={`View ${title} larger (opens in a new tab)`}>
-          <img src={media + id + '-thumb.jpg'} alt={alt} width={width} height={height} loading="lazy" decoding="async"/>
+        <a href={media + id + '.jpg?v=2'} target="_blank" rel="noreferrer" aria-label={`View ${title} larger (opens in a new tab)`}>
+          <img src={media + id + '-thumb.jpg?v=2'} alt={alt} width={width} height={height} loading="lazy" decoding="async"/>
         </a>
         <figcaption>{title}</figcaption>
       </figure>)}

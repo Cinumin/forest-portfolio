@@ -2,7 +2,7 @@ export const projects = [
   { title: 'Washington DC', group: 'Film & Video', file: 'washington-dc-hd', description: 'A short film from a spring break trip to Washington, DC.' },
   { title: 'Garden Study', group: 'Film & Video', file: 'garden-study-4k', description: 'A short film set in a garden.' },
   { title: 'The Beauty of Still Shots', group: 'Film & Video', file: 'still-shots-hd', description: 'A study of stillness, light, and movement.' },
-  { title: 'Museum Study', group: 'Film & Video', file: 'museum-study-hd', description: 'A short film about looking closely at paintings.' },
+  { title: 'Museum Study', group: 'Film & Video', file: 'museum-study-new', description: 'A short film about looking closely at paintings.' },
   { title: 'Orchard Study', group: 'Film & Video', file: 'orchard-study-4k', description: 'A short film set in an apple orchard.' },
   { title: 'Personal Portfolio', group: 'Design & Development', url: 'https://cinumin.github.io/myportfolio/', description: 'A responsive React and Vite portfolio designed in Figma.' },
   { title: 'Spelltracker', group: 'Design & Development', url: 'https://github.com/Cinumin/spell_tracker', description: 'A real-time hand-tracking prototype recognizing two Chinese characters.' },
