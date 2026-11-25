@@ -394,40 +394,53 @@ export default function LanternPath() {
   const [expanded,setExpanded] = useState(false)
   const [index,setIndex] = useState(0)
   const navigate = useNavigate()
-  const video = useMemo(() => {
+  const mobilePlayback = useMemo(()=>matchMedia('(pointer: coarse)').matches,[])
+  const videoPool = useMemo(() => videos.map((item,i) => {
     const element = document.createElement('video')
-    element.muted = false; element.loop = true; element.playsInline = true
-    element.preload = 'auto'
-    element.src = import.meta.env.BASE_URL + 'project-media/garden-study-preview.mp4'
+    element.muted = false
+    element.loop = true
+    element.playsInline = true
+    element.preload = i===0 ? 'auto' : 'none'
+    const file = mobilePlayback ? item.file+'-web' : i===0 ? 'garden-study-preview' : item.file
+    element.src = import.meta.env.BASE_URL+'project-media/'+file+'.mp4'
     return element
-  },[])
+  }),[mobilePlayback])
+  const video = videoPool[index]
+  useEffect(()=>()=>videoPool.forEach(item=>{item.pause();item.removeAttribute('src');item.load()}),[videoPool])
+  useEffect(()=>{
+    if (!mobilePlayback || mode!=='video') return
+    const next=videoPool[(index+1)%videos.length]
+    next.preload='auto'
+    if (next.readyState===0) next.load()
+  },[index,mode,mobilePlayback,videoPool])
+  function switchVideo(direction: number) {
+    const next=(index+direction+videos.length)%videos.length
+    video.pause()
+    void videoPool[next].play().catch(()=>{})
+    setIndex(next)
+  }
   useEffect(() => {
     window.dispatchEvent(new CustomEvent('portfolio-projector-playback', { detail: mode === 'video' || expanded }))
     return () => { window.dispatchEvent(new CustomEvent('portfolio-projector-playback', { detail: false })) }
   }, [mode, expanded])
   useEffect(() => {
-    const file = index === 0 ? 'garden-study-preview' : videos[index].file
-    const source = new URL(import.meta.env.BASE_URL + 'project-media/' + file + '.mp4', window.location.href).href
-    if (video.src !== source) video.src = source
     if (mode === 'video' && !expanded) void video.play().catch(() => {})
     return () => video.pause()
   },[index,mode,video,expanded])
   function openProjector() {
-    const source = new URL(import.meta.env.BASE_URL + 'project-media/garden-study-preview.mp4',window.location.href).href
-    if (video.src !== source) video.src = source
     setIndex(0)
     setMode('video')
-    void video.play().catch(()=>{})
+    void videoPool[0].play().catch(()=>{})
   }
   useEffect(() => {
     const close = (event: KeyboardEvent) => {
       if (event.key === 'Escape') { setExpanded(false); setCategory(null); setMode('room') }
-      if (mode === 'video' && event.key === 'ArrowRight') setIndex(i=>(i+1)%videos.length)
-      if (mode === 'video' && event.key === 'ArrowLeft') setIndex(i=>(i+videos.length-1)%videos.length)
+      if (mode === 'video' && event.key === 'ArrowRight') switchVideo(1)
+      if (mode === 'video' && event.key === 'ArrowLeft') switchVideo(-1)
     }
     window.addEventListener('keydown',close)
     return () => window.removeEventListener('keydown',close)
-  },[mode])
+  },[mode,index,videoPool])
   return <main className="room-viewport" aria-busy={!ready}
     onTouchStart={event=>{
       if (mode !== 'room' || !(event.target instanceof HTMLCanvasElement) || event.touches.length!==1) return
@@ -456,9 +469,9 @@ export default function LanternPath() {
       {mode === 'video' && <Projection video={video} onExpand={()=>{video.pause();setExpanded(true)}} />}
     </Canvas>
     {mode === 'video' && <div className="projection-controls">
-      <button onClick={()=>setIndex(i=>(i+videos.length-1)%videos.length)} aria-label="Previous video">←</button>
+      <button onClick={()=>switchVideo(-1)} aria-label="Previous video">←</button>
       <span className="projection-title" aria-live="polite">{videos[index].title}</span>
-      <button onClick={()=>setIndex(i=>(i+1)%videos.length)} aria-label="Next video">→</button>
+      <button onClick={()=>switchVideo(1)} aria-label="Next video">→</button>
       <button aria-label="Original video" onClick={()=>setExpanded(true)}><span className="nav-full">Original video</span><span className="nav-compact">Original</span></button>
       <button aria-label="Return to room" onClick={()=>setMode('room')}><span className="nav-full">Return to room</span><span className="nav-compact">Room</span></button>
     </div>}
