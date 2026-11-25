@@ -114,3 +114,11 @@
 }
 .room-all-projects:hover { background:#4b3929; }
 .room-category-access { flex-wrap:wrap; max-width:calc(100% - 36px); justify-content:flex-end; }
+.room-browse-menu{position:absolute;bottom:max(18px,env(safe-area-inset-bottom));right:18px;z-index:30;color:#f3dfbf;font-size:13px}
+.room-browse-menu summary{list-style:none;cursor:pointer;min-height:44px;padding:12px 18px;border:1px solid #9a8060;background:#292118ed;border-radius:24px}
+.room-browse-menu summary::-webkit-details-marker{display:none}
+.room-browse-menu nav{position:absolute;bottom:54px;right:0;width:180px;display:grid;background:#211b16f5;border:1px solid #806c51;border-radius:12px;padding:8px;box-shadow:0 8px 24px #0006}
+.room-browse-menu nav a,.room-browse-menu nav button{display:flex;align-items:center;min-height:44px;background:transparent;border:0;padding:10px 12px;color:#f3dfbf;text-decoration:none;text-align:left;font-size:13px;border-radius:6px}
+.room-browse-menu nav :is(a,button):hover{background:#53412a}
+.room-swipe-hint{display:none}
+@media(max-width:700px){.room-viewport canvas{touch-action:none}.room-swipe-hint{display:block;position:absolute;bottom:76px;left:0;right:0;text-align:center;pointer-events:none;color:#e2d3bd;font-size:11px;text-shadow:0 1px 4px #000}.projection-controls{max-width:calc(100% - 32px);flex-wrap:wrap;bottom:78px;left:16px;font-size:12px}}

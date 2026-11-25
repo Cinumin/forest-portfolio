@@ -294,7 +294,7 @@ const videos = [
   { title: 'Orchard Study', file: 'orchard-study-4k' },
 ]
 
-function CameraMove({ mode, onArrive }: { mode: string; onArrive: () => void }) {
+function CameraMove({ mode, onArrive, pan }: { mode: string; onArrive: () => void; pan: number }) {
   const start = useRef(0)
   const origin = useRef(new THREE.Vector3())
   const look = useRef(new THREE.Vector3(...CONFIG.camera.target as [number,number,number]))
@@ -309,6 +309,10 @@ function CameraMove({ mode, onArrive }: { mode: string; onArrive: () => void }) 
     const target = mode === 'video' ? new THREE.Vector3(-2.79,1.43,5.55)
       : mode === 'window' ? new THREE.Vector3(-4.5,1.65,9)
       : new THREE.Vector3(...CONFIG.camera.target as [number,number,number])
+    if (mode === 'room' && matchMedia('(max-width: 700px)').matches) {
+      const direction = target.clone().sub(destination).applyAxisAngle(new THREE.Vector3(0,1,0),pan)
+      target.copy(destination).add(direction)
+    }
     camera.position.lerpVectors(origin.current,destination,eased)
     look.current.lerp(target,Math.min(1,.065 + eased*.1))
     camera.lookAt(look.current)
@@ -380,6 +384,8 @@ function RoomReady({ onReady }: { onReady: () => void }) {
 }
 export default function LanternPath() {
   const [mode,setMode] = useState('room')
+  const [pan,setPan] = useState(0)
+  const gesture = useRef({ x:0, pan:0, dragging:false, moved:false })
   const [ready,setReady] = useState(false)
   const { progress, errors } = useProgress()
 
@@ -412,12 +418,30 @@ export default function LanternPath() {
     window.addEventListener('keydown',close)
     return () => window.removeEventListener('keydown',close)
   },[mode])
-  return <main className="room-viewport" aria-busy={!ready}>
+  return <main className="room-viewport" aria-busy={!ready}
+    onTouchStart={event=>{
+      if (mode !== 'room' || !(event.target instanceof HTMLCanvasElement) || event.touches.length!==1) return
+      gesture.current={x:event.touches[0].clientX,pan,dragging:true,moved:false}
+    }}
+    onTouchMove={event=>{
+      if (!gesture.current.dragging || event.touches.length!==1) return
+      const delta=event.touches[0].clientX-gesture.current.x
+      if (Math.abs(delta)>8) gesture.current.moved=true
+      setPan(THREE.MathUtils.clamp(gesture.current.pan+delta/window.innerWidth*1.7,-1.05,1.05))
+    }}
+    onTouchEnd={()=>{gesture.current.dragging=false}}
+    onTouchCancel={()=>{gesture.current.dragging=false}}
+    onClickCapture={event=>{
+      if (gesture.current.moved && event.target instanceof HTMLCanvasElement) {
+        event.stopPropagation()
+        gesture.current.moved=false
+      }
+    }}>
     {!ready && <RoomLoading progress={progress} failed={errors.length > 0} />}
     {mode === 'window' && <div className="window-exit-blend" style={{backgroundImage: `url(${import.meta.env.BASE_URL}art/01-window-view.png)`}} />} 
     <Canvas gl={{ toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: CONFIG.lighting.exposure }} shadows dpr={[1,2]} camera={{position:CONFIG.camera.position as [number,number,number],fov:CONFIG.camera.fov}}>
       <color attach="background" args={['#16151b']} />
-      <CameraMove mode={mode} onArrive={()=>navigate('/')} />
+      <CameraMove pan={pan} mode={mode} onArrive={()=>navigate('/')} />
       <Suspense fallback={null}><RoomReady onReady={()=>setReady(true)} /><Room onCategory={setCategory} mode={mode} onProjector={()=>{setIndex(0);setMode('video');void video.play().catch(()=>{})}} onWindow={()=>setMode('window')} /></Suspense>
       {mode === 'video' && <Projection video={video} onExpand={()=>{video.pause();setExpanded(true)}} />}
     </Canvas>
@@ -433,10 +457,15 @@ export default function LanternPath() {
       <button autoFocus onClick={()=>setExpanded(false)}>Back to projection</button>
       <video key={index} controls autoPlay playsInline src={import.meta.env.BASE_URL+'project-media/'+videos[index].file+'.mp4'} />
     </div>}
-    <nav className="room-category-access" aria-label="Projects">
-      <Link className="room-all-projects" to="/Gallery">All projects</Link>
-      {['Code','Data Analysis','Artworks'].map(label=><button key={label} onClick={()=>setCategory(label)}>{label}</button>)}
-    </nav>
+    <details className="room-browse-menu">
+      <summary>Browse projects</summary>
+      <nav aria-label="Projects">
+        <Link to="/Gallery">All projects</Link>
+        <button onClick={event=>{setIndex(0);setMode('video');event.currentTarget.closest('details')?.removeAttribute('open')}}>Videos</button>
+        {['Code','Data Analysis','Artworks'].map(label=><button key={label} onClick={event=>{setCategory(label);event.currentTarget.closest('details')?.removeAttribute('open')}}>{label}</button>)}
+      </nav>
+    </details>
+    {mode==='room' && <p className="room-swipe-hint">Swipe to look around · Tap objects to explore</p>}
     <button className="room-projector-access" onClick={()=>setMode('video')}>Play projector</button>
     <button className="room-window-access" onClick={()=>setMode('window')}>Enter forest</button>
   </main>
