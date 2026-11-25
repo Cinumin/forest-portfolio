@@ -398,6 +398,7 @@ export default function LanternPath() {
     const element = document.createElement('video')
     element.muted = false; element.loop = true; element.playsInline = true
     element.preload = 'auto'
+    element.src = import.meta.env.BASE_URL + 'project-media/garden-study-preview.mp4'
     return element
   },[])
   useEffect(() => {
@@ -405,10 +406,19 @@ export default function LanternPath() {
     return () => { window.dispatchEvent(new CustomEvent('portfolio-projector-playback', { detail: false })) }
   }, [mode, expanded])
   useEffect(() => {
-    video.src = import.meta.env.BASE_URL + 'project-media/' + videos[index].file + '.mp4'
+    const file = index === 0 ? 'garden-study-preview' : videos[index].file
+    const source = new URL(import.meta.env.BASE_URL + 'project-media/' + file + '.mp4', window.location.href).href
+    if (video.src !== source) video.src = source
     if (mode === 'video' && !expanded) void video.play().catch(() => {})
     return () => video.pause()
   },[index,mode,video,expanded])
+  function openProjector() {
+    const source = new URL(import.meta.env.BASE_URL + 'project-media/garden-study-preview.mp4',window.location.href).href
+    if (video.src !== source) video.src = source
+    setIndex(0)
+    setMode('video')
+    void video.play().catch(()=>{})
+  }
   useEffect(() => {
     const close = (event: KeyboardEvent) => {
       if (event.key === 'Escape') { setExpanded(false); setCategory(null); setMode('room') }
@@ -442,7 +452,7 @@ export default function LanternPath() {
     <Canvas gl={{ toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: CONFIG.lighting.exposure }} shadows dpr={[1,matchMedia('(pointer: coarse)').matches ? 1.25 : 1.75]} camera={{position:CONFIG.camera.position as [number,number,number],fov:CONFIG.camera.fov}}>
       <color attach="background" args={['#16151b']} />
       <CameraMove pan={pan} mode={mode} onArrive={()=>navigate('/')} />
-      {urls && <Suspense fallback={null}><RoomReady onReady={()=>setReady(true)} /><Room urls={urls} onCategory={setCategory} mode={mode} onProjector={()=>{setIndex(0);setMode('video');void video.play().catch(()=>{})}} onWindow={()=>setMode('window')} /></Suspense>}
+      {urls && <Suspense fallback={null}><RoomReady onReady={()=>setReady(true)} /><Room urls={urls} onCategory={setCategory} mode={mode} onProjector={openProjector} onWindow={()=>setMode('window')} /></Suspense>}
       {mode === 'video' && <Projection video={video} onExpand={()=>{video.pause();setExpanded(true)}} />}
     </Canvas>
     {mode === 'video' && <div className="projection-controls">
@@ -461,12 +471,12 @@ export default function LanternPath() {
       <summary>Browse projects</summary>
       <nav aria-label="Projects">
         <Link to="/Gallery">All projects</Link>
-        <button onClick={event=>{setIndex(0);setMode('video');event.currentTarget.closest('details')?.removeAttribute('open')}}>Videos</button>
+        <button onClick={event=>{openProjector();event.currentTarget.closest('details')?.removeAttribute('open')}}>Videos</button>
         {['Code','Data Analysis','Artworks'].map(label=><button key={label} onClick={event=>{setCategory(label);event.currentTarget.closest('details')?.removeAttribute('open')}}>{label}</button>)}
       </nav>
     </details>
     {mode==='room' && <p className="room-swipe-hint">Swipe to look around · Tap objects to explore</p>}
-    <button className="room-projector-access" onClick={()=>setMode('video')}>Play projector</button>
+    <button className="room-projector-access" onClick={openProjector}>Play projector</button>
     <button className="room-window-access" onClick={()=>setMode('window')}>Enter forest</button>
   </main>
 }
