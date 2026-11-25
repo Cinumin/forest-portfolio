@@ -1,0 +1,7 @@
+.room-loading{position:fixed;inset:0;z-index:60;background:#111820;display:grid;place-items:center;color:#eee1ce;opacity:1;transition:opacity .65s ease}
+.room-loading>div{width:min(280px,80vw);text-align:center}
+.room-loading p{font-size:18px;color:inherit;margin:0 0 22px}
+.room-loading progress{display:block;width:100%;height:3px;margin:0 0 24px;accent-color:#cbb28c}
+.room-loading a{font-size:13px;color:#cabca8}
+.room-loading-leaving{opacity:0;pointer-events:none}
+@media(prefers-reduced-motion:reduce){.room-loading{transition:none}}

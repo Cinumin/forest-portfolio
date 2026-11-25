@@ -1,5 +1,7 @@
 import { Suspense, useMemo, useState, useEffect, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
+import RoomLoading from '../components/RoomLoading'
+import { useProgress } from '@react-three/drei/core/Progress.js'
 import { Html } from '@react-three/drei/web/Html.js'
 import { useGLTF } from '@react-three/drei/core/Gltf.js'
 import { useTexture } from '@react-three/drei/core/Texture.js'
@@ -372,8 +374,24 @@ function Projection({ video, onExpand }: { video: HTMLVideoElement; onExpand: ()
     <pointLight position={[-2.95,1.43,5.55]} color="#e1d4b8" intensity={.015} distance={1.2} />
   </>
 }
+function RoomReady({ onReady }: { onReady: () => void }) {
+  const frames = useRef(0)
+  useFrame(() => {
+    frames.current++
+    if (frames.current === 2) onReady()
+  })
+  return null
+}
 export default function LanternPath() {
   const [mode,setMode] = useState('room')
+  const [ready,setReady] = useState(false)
+  const [loadingVisible,setLoadingVisible] = useState(true)
+  const { progress, errors } = useProgress()
+  useEffect(() => {
+    if (!ready) return
+    const timeout = window.setTimeout(()=>setLoadingVisible(false),700)
+    return ()=>clearTimeout(timeout)
+  },[ready])
   const location = useLocation()
   const [category,setCategory] = useState<string | null>(()=>new URLSearchParams(location.search).get('gallery')==='artworks'?'Artworks':null)
   const [expanded,setExpanded] = useState(false)
@@ -403,12 +421,13 @@ export default function LanternPath() {
     window.addEventListener('keydown',close)
     return () => window.removeEventListener('keydown',close)
   },[mode])
-  return <main className="room-viewport">
+  return <main className="room-viewport" aria-busy={!ready}>
+    {loadingVisible && <RoomLoading progress={ready ? 100 : progress} failed={errors.length > 0} leaving={ready} />}
     {mode === 'window' && <div className="window-exit-blend" style={{backgroundImage: `url(${import.meta.env.BASE_URL}art/01-window-view.png)`}} />} 
     <Canvas gl={{ toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: CONFIG.lighting.exposure }} shadows dpr={[1,2]} camera={{position:CONFIG.camera.position as [number,number,number],fov:CONFIG.camera.fov}}>
       <color attach="background" args={['#16151b']} />
       <CameraMove mode={mode} onArrive={()=>navigate('/')} />
-      <Suspense fallback={null}><Room onCategory={setCategory} mode={mode} onProjector={()=>{setIndex(0);setMode('video');void video.play().catch(()=>{})}} onWindow={()=>setMode('window')} /></Suspense>
+      <Suspense fallback={null}><RoomReady onReady={()=>setReady(true)} /><Room onCategory={setCategory} mode={mode} onProjector={()=>{setIndex(0);setMode('video');void video.play().catch(()=>{})}} onWindow={()=>setMode('window')} /></Suspense>
       {mode === 'video' && <Projection video={video} onExpand={()=>{video.pause();setExpanded(true)}} />}
     </Canvas>
     {mode === 'video' && <div className="projection-controls">

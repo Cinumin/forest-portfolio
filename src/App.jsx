@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { HashRouter, Link, Route, Routes } from 'react-router-dom'
+import RoomLoading from './components/RoomLoading'
 import BackgroundMusic from './components/BackgroundMusic'
 import Home from './pages/Home'
 import About from './pages/About'
@@ -9,7 +10,7 @@ import ArtworkDetail from './pages/ArtworkDetail'
 const LanternPath = lazy(() => import('./pages/LanternPath'))
 
 export default function App() {
-  return <HashRouter><BackgroundMusic /><Suspense fallback={<main className="paper"><p>Loading the forest…</p><Link to="/Gallery">Open project list</Link></main>}>
+  return <HashRouter><BackgroundMusic /><Suspense fallback={<RoomLoading />}>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/About" element={<About />} />
