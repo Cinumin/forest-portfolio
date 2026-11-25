@@ -122,3 +122,9 @@
 .room-browse-menu nav :is(a,button):hover{background:#53412a}
 .room-swipe-hint{display:none}
 @media(max-width:700px){.room-viewport canvas{touch-action:none}.room-swipe-hint{display:block;position:absolute;bottom:76px;left:0;right:0;text-align:center;pointer-events:none;color:#e2d3bd;font-size:11px;text-shadow:0 1px 4px #000}.projection-controls{max-width:calc(100% - 32px);flex-wrap:wrap;bottom:78px;left:16px;font-size:12px}}
+@media(max-width:700px){
+ .projection-controls{left:12px;right:12px;max-width:none;flex-wrap:nowrap;gap:6px;padding:6px;justify-content:space-between}
+ .projection-controls button{white-space:nowrap;flex:1 1 auto;padding:8px;min-height:44px;font-size:12px}
+ .projection-controls button[aria-label="Previous video"],.projection-controls button[aria-label="Next video"]{flex:0 0 44px}
+ .projection-title{position:absolute;bottom:calc(100% + 6px);left:0;right:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:5px 10px;background:#15131ddd;border-radius:6px}
+}

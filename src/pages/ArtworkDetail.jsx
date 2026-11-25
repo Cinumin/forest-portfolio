@@ -12,7 +12,7 @@ export default function ArtworkDetail() {
     ['Year', work.year], ['Created at', work.location],
   ].filter(([, value]) => value)
   return <main className="paper artwork-detail">
-    <header className="page-nav"><Link to={gallery}>← Back to artworks</Link><Link to="/">Home</Link><Link to="/Gallery">All projects</Link><Link to="/Projects">Return to room</Link></header>
+    <header className="page-nav"><Link to={gallery} aria-label="Back to artworks"><span className="nav-full">← Back to artworks</span><span className="nav-compact">← Artworks</span></Link><Link to="/">Home</Link><Link to="/Gallery">All projects</Link><Link to="/Projects" aria-label="Return to room"><span className="nav-full">Return to room</span><span className="nav-compact">Room</span></Link></header>
     <div className="artwork-detail-layout">
       <a href={import.meta.env.BASE_URL+'artwork/'+work.id+'.jpg'} aria-label={'Open '+work.title+' full size'}>
         <img src={import.meta.env.BASE_URL+'artwork/'+work.id+'.jpg'} alt={work.alt} width={work.width} height={work.height}/>

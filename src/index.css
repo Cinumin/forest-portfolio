@@ -39,3 +39,9 @@
 .background-music>button{min-width:44px;width:44px;display:grid;place-items:center}
 .background-music{max-height:80svh;overflow-y:auto}
 .background-music>div>div>p{margin:0;padding:5px 10px;color:#d4c5ad;font-size:11px}
+.nav-compact{display:none}
+@media(max-width:700px){
+  .nav-full{display:none}.nav-compact{display:inline}
+  .artwork-detail .page-nav{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:8px;font-size:12px}
+  .artwork-detail .page-nav a{display:flex;align-items:center;white-space:nowrap;min-height:44px}
+}

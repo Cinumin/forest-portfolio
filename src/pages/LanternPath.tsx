@@ -447,10 +447,10 @@ export default function LanternPath() {
     </Canvas>
     {mode === 'video' && <div className="projection-controls">
       <button onClick={()=>setIndex(i=>(i+videos.length-1)%videos.length)} aria-label="Previous video">←</button>
-      <span aria-live="polite">{videos[index].title}</span>
+      <span className="projection-title" aria-live="polite">{videos[index].title}</span>
       <button onClick={()=>setIndex(i=>(i+1)%videos.length)} aria-label="Next video">→</button>
-      <button onClick={()=>setExpanded(true)}>Original video</button>
-      <button onClick={()=>setMode('room')}>Return to room</button>
+      <button aria-label="Original video" onClick={()=>setExpanded(true)}><span className="nav-full">Original video</span><span className="nav-compact">Original</span></button>
+      <button aria-label="Return to room" onClick={()=>setMode('room')}><span className="nav-full">Return to room</span><span className="nav-compact">Room</span></button>
     </div>}
     {category && <ProjectPanel category={category} onClose={()=>setCategory(null)} />}
     {expanded && <div className="original-video" role="dialog" aria-modal="true" aria-label={videos[index].title}>
