@@ -22,3 +22,20 @@
 .contact-form :is(input,textarea):focus-visible{outline:2px solid #d9f5ff;outline-offset:2px}
 .contact-form button{justify-self:start}
 @media(max-width:680px){.contact-layout{grid-template-columns:1fr}}
+
+.artwork-detail-layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(260px,1fr);gap:clamp(24px,5vw,64px);align-items:start}
+.artwork-detail-layout img{display:block;width:100%;height:auto;max-height:78svh;object-fit:contain}
+.artwork-detail h1{font-size:clamp(2rem,4vw,3.5rem);margin:.5rem 0 1.5rem}
+.artwork-detail dl{margin:1.5rem 0;padding-block:1rem;border-block:1px solid #527ea052}
+.artwork-detail dl div{display:grid;grid-template-columns:110px 1fr;gap:12px;margin:.4rem 0}
+.artwork-detail dt{color:#9eb3c4}.artwork-detail dd{margin:0}
+.artwork-detail p{margin-bottom:1rem;line-height:1.75}
+@media(max-width:700px){.artwork-detail-layout{grid-template-columns:1fr}.artwork-detail-layout img{max-height:65svh}}
+
+.background-music{position:fixed;top:16px;right:16px;z-index:80;max-width:240px;background:#121b25e8;border-radius:8px;overflow:hidden}
+.background-music>button{font-size:12px;min-height:44px;min-width:90px}
+.background-music iframe{display:block;border:0;width:240px;height:200px}
+.background-music p{padding:10px;font-size:12px}
+.background-music>button{min-width:44px;width:44px;display:grid;place-items:center}
+.background-music{max-height:80svh;overflow-y:auto}
+.background-music>div>div>p{margin:0;padding:5px 10px;color:#d4c5ad;font-size:11px}

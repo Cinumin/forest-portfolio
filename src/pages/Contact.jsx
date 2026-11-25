@@ -28,7 +28,7 @@ export default function Contact() {
   }
 
   return <main className="paper">
-    <header className="page-nav"><Link to="/">Angela Zhao</Link><Link to="/Projects">Projects</Link></header>
+    <header className="page-nav"><Link to="/">Home</Link><Link to="/Projects">Projects</Link></header>
     <h1>Contact</h1>
     <p>Have a project in mind or want to say hello?</p>
     <div className="contact-layout">

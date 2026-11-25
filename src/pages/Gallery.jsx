@@ -19,9 +19,9 @@ function ArtworkGrid({ group }) {
   return <div className="artwork-grid">
     {artwork.filter(work => work.group === group).map(({ id, title, alt, width, height }) =>
       <figure className="artwork-piece" key={id}>
-        <a href={media + id + '.jpg?v=2'} target="_blank" rel="noreferrer" aria-label={`View ${title} larger (opens in a new tab)`}>
+        <Link to={'/Artworks/'+id} state={{artworkGallery:'list'}} aria-label={`View ${title} details`}>
           <img src={media + id + '-thumb.jpg?v=2'} alt={alt} width={width} height={height} loading="lazy" decoding="async"/>
-        </a>
+        </Link>
         <figcaption>{title}</figcaption>
       </figure>)}
   </div>
@@ -34,7 +34,7 @@ function ProjectGrid({ group, heading = 'h3' }) {
 
 export default function Gallery() {
   return <main className="paper">
-    <header className="page-nav"><Link to="/">Angela Zhao</Link><Link to="/Projects">Forest walk</Link></header>
+    <header className="page-nav"><Link to="/">Home</Link><Link to="/Projects">Return to room</Link></header>
     <h1>Projects</h1>
     <section aria-labelledby="art-portfolio-title">
       <h2 id="art-portfolio-title">Art Portfolio</h2>

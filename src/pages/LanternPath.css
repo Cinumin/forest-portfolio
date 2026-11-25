@@ -1,0 +1,116 @@
+.room-viewport {
+  width: 100%;
+  height: 100svh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #080d17;
+}
+.room-scene {
+  position: relative;
+  width: min(100vw, 177.777778svh);
+  flex: none;
+  overflow: hidden;
+  isolation: isolate;
+  background: #182232;
+}
+.room-layer { position: absolute; }
+.room-layer img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.room-01-window-view img { object-fit: contain; }
+.room-01-window-view { background: #091725; display: grid; align-items: center; }
+.room-placeholder {
+  border: 1px dashed #8290a266;
+  background: #263244b3;
+  display: grid;
+  place-items: center;
+  color: #b8c5d5;
+}
+.room-placeholder span {
+  font: clamp(8px, .76vw, 12px)/1.4 ui-monospace, monospace;
+  letter-spacing: .07em;
+  padding: .3em .5em;
+  background: #142031e6;
+}
+.room-03-wall { background: #1b2535; border: 0; place-items: start; padding: 1.4%; }
+.room-02-window-frame.room-placeholder { background: transparent; border: 1px dashed #a7b5c6a1; pointer-events: none; place-items: start; }
+.room-02-window-frame span { transform: translateY(-100%); }
+.room-09-light-glow.room-placeholder { background: transparent; border: 1px dotted #8290a23d; pointer-events: none; place-items: start end; }
+.room-weather { position: absolute; z-index: 2; pointer-events: none; }
+
+/* Sculpted room objects stand in for artwork that has not been supplied. */
+.room-scene { background: repeating-linear-gradient(90deg,#252b30 0 2px,#292e33 3px 90px); box-shadow: inset 0 0 160px #0009; }
+.room-03-wall.room-placeholder { background: radial-gradient(ellipse at 74% 66%,#5a49342e,transparent 45%),linear-gradient(125deg,#333940,#202831); border:0; }
+.room-03-wall span,.room-02-window-frame span,.room-04-desk span,.room-10-curtains span,.room-09-light-glow span { display:none; }
+.room-02-window-frame.room-placeholder {
+  border: 12px solid #35302c;
+  box-shadow: inset 3px 2px 5px #b6b2a335,0 12px 17px #0008,0 0 0 3px #151a20;
+}
+.room-02-window-frame::before { content:''; position:absolute; left:49%; width:1.6%; height:100%; background:linear-gradient(90deg,#151b21,#575049,#242729); box-shadow:4px 0 6px #0008; }
+.room-02-window-frame::after { content:''; position:absolute; top:45%; height:2.2%; width:100%; background:linear-gradient(#645b4e,#28282a); box-shadow:0 5px 7px #0007; }
+.room-04-desk.room-placeholder { background:repeating-linear-gradient(2deg,#72553c 0px,#72553c 3px,#795b40 4px,#6a4b34 6px); border:0; transform:perspective(700px) rotateX(29deg); transform-origin:50% 0; box-shadow:0 14px 0 #3b291e,0 24px 25px #000b,inset 0 2px 2px #c4a27788; }
+.room-10-curtains.room-placeholder { background:repeating-linear-gradient(90deg,#18201f,#3d4941 19%,#202d28 35%,#131c1a 48%); border:0; box-shadow:-7px 6px 14px #0008; border-radius:0 0 8% 15%; }
+.room-09-light-glow.room-placeholder { border:0; background:radial-gradient(ellipse,#ffbd6020,transparent 64%); mix-blend-mode:screen; }
+.room-05-projector.room-placeholder { background:linear-gradient(130deg,#6a6b60,#373f41 50%,#202b31); border:1px solid #8a938577; border-radius:14% 14% 7% 6%; height:11%!important; top:65%!important; width:12%!important; box-shadow:9px 12px 10px #0008,inset 2px 2px 3px #bbc7bf44; transform:skewY(3deg); }
+.room-05-projector::before { content:''; position:absolute; width:53%; aspect-ratio:1; border-radius:50%; top:-75%; left:3%; background:radial-gradient(circle,#1a2227 0 9%,#a1a596 10% 14%,transparent 15%),repeating-conic-gradient(#777f75 0deg 24deg,#182329 25deg 59deg); border:5px solid #8c9385; box-shadow:58px 3px 0 -3px #747e73,58px 3px 0 2px #222f35; }
+.room-05-projector::after { content:''; position:absolute; right:-19%; top:30%; width:27%; height:45%; border-radius:15% 40% 40% 15%; background:radial-gradient(ellipse at 86% 50%,#637d87,#15232b 48%,#4d5756 54%,#1d292e 70%); box-shadow:0 3px 5px #0008; }
+.room-06-notebook.room-placeholder { background:linear-gradient(110deg,#383a30 0 9%,#727260 10%,#505646 12% 98%,#242d27); height:7%!important; border:1px solid #a2a08966; border-radius:4px; transform:perspective(400px) rotateX(30deg) rotateZ(-8deg); box-shadow:0 4px 0 #c2b99b,0 7px 0 #38372d,4px 13px 12px #0008; }
+.room-07-canvas.room-placeholder { background:repeating-linear-gradient(0deg,#c9c2ad 0 1px,#c6bfaa 1px 3px); border:8px solid #705740; box-shadow:inset 0 0 18px #74664d44,8px 11px 14px #0009; transform:rotate(-3deg); }
+.room-08-lamp.room-placeholder { background:transparent; border:0; }
+.room-08-lamp::before { content:''; position:absolute; width:7%; height:75%; left:48%; top:22%; background:linear-gradient(90deg,#221e19,#b3a07b 45%,#35332b); box-shadow:5px 2px 5px #0005; transform:rotate(-10deg); }
+.room-08-lamp::after { content:''; position:absolute; left:4%; top:0; width:90%; height:35%; border-radius:50% 50% 12% 12%; background:radial-gradient(ellipse at 50% 100%,#ffe8b9,#bd9564 8%,#596650 13%,#253e37 60%,#172c27); border-bottom:3px solid #d5b578; box-shadow:0 12px 24px #ffbb4d27; }
+.room-layer span { opacity:0; transition:opacity .3s; z-index:4; position:relative; }
+.room-layer:hover span { opacity:1; }
+.room-08-lamp { filter:drop-shadow(0 0 2px #c0956355); }
+.projection-controls { position:absolute; bottom:24px; left:24px; display:flex; gap:12px; align-items:center; padding:10px; background:#15131ddd; color:#f2e0c3; font-size:13px; }
+.projection-controls button { min-height:44px; min-width:44px; background:#3a3029; }
+.room-projector-access,.room-window-access { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+.room-projector-access:focus-visible,.room-window-access:focus-visible { top:20px; left:20px; width:auto; height:auto; clip-path:none; z-index:10; }
+.window-exit-blend { position:absolute; inset:0; z-index:5; pointer-events:none; background-size:cover; background-position:center; opacity:0; animation:window-exit 2.5s ease-in-out forwards; }
+@keyframes window-exit { 0%,45% { opacity:0; } 100% { opacity:1; } }
+@media(prefers-reduced-motion:reduce) { .window-exit-blend { animation-duration:.01s; } }
+.projector-hover-label {
+  display:block;
+  padding:7px 12px;
+  border:1px solid #dbc09880;
+  border-radius:20px;
+  background:#211c16ee;
+  color:#ffe4bd;
+  font:12px/1 ui-monospace,monospace;
+  letter-spacing:.04em;
+  white-space:nowrap;
+}
+.room-project-panel { background:#211d19; color:#f2e8da; border:1px solid #887458; border-radius:10px; width:min(700px,92vw); max-height:88svh; padding:24px; }
+.room-project-panel::backdrop { background:#0009; }
+.room-project-panel h2 { font-size:24px; margin:12px 0; }
+.room-project-panel h3 { font-size:18px; }
+.room-project-panel article { padding:18px 0; border-bottom:1px solid #685b49; }
+.room-project-panel img { display:block; max-width:100%; height:57svh; object-fit:contain; margin:auto; }
+.room-project-panel button { min-width:44px; min-height:44px; }
+.original-video { position:absolute; inset:0; z-index:20; background:#000; display:grid; grid-template-rows:auto 1fr; padding:14px; }
+.original-video button { justify-self:end; min-height:44px; }
+.original-video video { width:100%; height:100%; min-height:0; object-fit:contain; background:#000; }
+.room-category-access { position:absolute; right:18px; bottom:18px; display:flex; gap:8px; }
+.room-category-access button { font-size:12px; min-height:44px; background:#211c16df; border-color:#887458; }
+.room-gallery-panel { width:min(1050px,94vw); overflow-y:auto; }
+.room-gallery-panel > h2 { position:sticky; top:-24px; background:#211d19; padding:12px 0; z-index:1; }
+.room-art-gallery section { margin:20px 0 32px; }
+.room-art-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr)); gap:22px; }
+.room-art-grid figure { margin:0; min-width:0; }
+.room-art-grid a { display:block; background:#161513; border:1px solid #675b48; border-radius:4px; padding:10px; }
+.room-art-grid img { width:100%; height:240px; object-fit:contain; }
+.room-art-grid figcaption { margin-top:8px; font-size:14px; color:#e0d4c2; }
+.room-all-projects {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  padding:8px 14px;
+  border:1px solid #c8ad84;
+  border-radius:8px;
+  background:#34291fee;
+  color:#ffe6bf;
+  font-size:13px;
+  text-decoration:none;
+}
+.room-all-projects:hover { background:#4b3929; }
+.room-category-access { flex-wrap:wrap; max-width:calc(100% - 36px); justify-content:flex-end; }

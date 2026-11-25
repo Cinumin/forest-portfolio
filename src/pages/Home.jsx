@@ -59,7 +59,6 @@ export default function Home() {
   const base = import.meta.env.BASE_URL
   return <main className="home" style={{ backgroundImage: `url(${base}forest/painting.jpg)` }}>
     <div className="home-masthead"><span>Angela Zhao / Portfolio</span><span>Art · Design · Exploration</span></div>
-    <img className="home-figures" src={base + 'forest/figures.svg'} alt="A boy with a lantern faces a girl made of snow." />
     <CrystalSnow />
     <div className="home-menu"><h1>Angela Zhao</h1><nav aria-label="Portfolio">
       <Link to="/About">About Me</Link><Link to="/Projects">Projects</Link><Link to="/Contact">Contact</Link>

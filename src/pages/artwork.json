@@ -5,7 +5,11 @@
     "title": "Fragility of Youth",
     "alt": "A portrait framed by foliage, flowers, and butterflies.",
     "width": 507,
-    "height": 640
+    "height": 640,
+    "description": "This piece explores childlike wonder in depicting the girl and the blue butterfly perched on her finger. Children are open to a fresh world of unknowns, ready to explore. The butterfly symbolizes transformation and sparks wonder in the girl’s expression, conflating concepts of growing up and the continuation of imagination. \nOn the other hand, the background's values, colors, and mood stand in juxtaposition to the subject garbed in my mother’s white dress and bonnet. The leaves and flowers in the background speak of the transience of nature and life. I tried capturing a dying flower in the process of turning into a cocoon and the wilted yellow petals transforming into wings as a representation of the renewal of vitality, youth, and wonder. Instead of filling the background with leaves, I painted swirling lines behind the vegetation to create movement, following the shape of the girl, essentially constricting the subject. The vines and stems intertwine and entangle, partially blockading the disorder of strokes and the canvas peeking through. These visual elements work hand in hand to convey the confusion or chaos that surrounds us, yet even so, anyone can retain their childlike wonder. \nWhile the flowers wilt and the stems entangle the girl, a blue butterfly flutters its delicate wings and perches on her finger. Time is constant. Yet, the dying flowers spin into cocoons; their withering petals transform into wings. Neither age nor inner turmoil can destroy the youthful spirit. ",
+    "medium": "Oil paint",
+    "year": "2024",
+    "location": "Home"
   },
   {
     "group": "Paintings",
@@ -13,7 +17,11 @@
     "title": "Fragility of Youth (detail)",
     "alt": "Close-up of a butterfly and flowers within the painted foliage.",
     "width": 480,
-    "height": 640
+    "height": 640,
+    "description": "This piece explores childlike wonder in depicting the girl and the blue butterfly perched on her finger. Children are open to a fresh world of unknowns, ready to explore. The butterfly symbolizes transformation and sparks wonder in the girl’s expression, conflating concepts of growing up and the continuation of imagination. \nOn the other hand, the background's values, colors, and mood stand in juxtaposition to the subject garbed in my mother’s white dress and bonnet. The leaves and flowers in the background speak of the transience of nature and life. I tried capturing a dying flower in the process of turning into a cocoon and the wilted yellow petals transforming into wings as a representation of the renewal of vitality, youth, and wonder. Instead of filling the background with leaves, I painted swirling lines behind the vegetation to create movement, following the shape of the girl, essentially constricting the subject. The vines and stems intertwine and entangle, partially blockading the disorder of strokes and the canvas peeking through. These visual elements work hand in hand to convey the confusion or chaos that surrounds us, yet even so, anyone can retain their childlike wonder. \nWhile the flowers wilt and the stems entangle the girl, a blue butterfly flutters its delicate wings and perches on her finger. Time is constant. Yet, the dying flowers spin into cocoons; their withering petals transform into wings. Neither age nor inner turmoil can destroy the youthful spirit. ",
+    "medium": "Oil paint",
+    "year": "2024",
+    "location": "Home"
   },
   {
     "group": "Paintings",
@@ -21,7 +29,11 @@
     "title": "Summer Dreaming",
     "alt": "A figure with a book sits in a tree among sunlit leaves.",
     "width": 466,
-    "height": 640
+    "height": 640,
+    "description": "This piece presents a girl lounging on the trunk of a tree. The painting includes the subject not just situated in nature but as if she is a part of nature, for the girl shares similar colors and movement with the tree trunk. Her gesture follows the direction of the tree’s contour. This moment on a summer day represents times when I daydream in my own world, whether after a hike or reading a good book.",
+    "medium": "Oil paint",
+    "year": "2023",
+    "location": "Home"
   },
   {
     "group": "Paintings",
@@ -29,7 +41,11 @@
     "title": "Icelandic River",
     "alt": "A blue river winds through green fields beneath mountains and clouds.",
     "width": 640,
-    "height": 506
+    "height": 506,
+    "description": "This piece explores my fascination with nature by admiring the landscape from a distance. I saw this river during a road trip around Iceland. Unlike the United States, which has urbanized much of its land, Iceland has preserved its natural landscape, remaining largely untouched by the human footprint. I aimed to portray the richness of the grass and sky in this painting, using thick strokes of vibrant paint in an impressionist style.",
+    "medium": "Oil paint",
+    "year": "2022",
+    "location": "Art studio"
   },
   {
     "group": "Paintings",
@@ -37,39 +53,56 @@
     "title": "Pointe Shoes",
     "alt": "Pale ballet shoes and looping ribbons on a dark ground.",
     "width": 640,
-    "height": 532
+    "height": 532,
+    "description": "For this piece, I arranged an old pair of pointe shoes to paint from direct observation, capturing the effects of a dancer’s training in the shoes’ creases and grime. The pair of pointe shoes sits in powerful silence alone on the canvas. The absence of a foot symbolizes something deeper: pointe shoes have conflicting abilities to disclose or conceal the state of a dancer’s foot.",
+    "medium": "Oil paint",
+    "year": "2022",
+    "location": "Art studio",
+    "dimensions": "11 × 14 (units not specified)"
   },
   {
     "group": "Paintings",
     "id": "horse-and-rider",
-    "title": "Horse and Rider",
+    "title": "Role Model",
     "alt": "A young rider stands beside a chestnut horse in dappled light.",
     "width": 479,
-    "height": 640
+    "height": 640,
+    "description": "In this piece, the size difference between the horse and the young girl mirrors the dynamic relationship between a child and their role model. The perspective of the horse and the girl creates an engaging composition, enhanced by the use of bold, contrasting colors.\nChildren are nurtured by their parents. During childhood, they learn new knowledge and develop their maturity. Horses are powerful and majestic animals, yet a delicate, petite child grasping the horse's rope shows a balance between their relationships. The child looking up and caressing the horse displays her reverence and harmony with the horse, serving as a model for emulation.",
+    "medium": "Oil paint",
+    "year": "2022",
+    "location": "Home"
   },
   {
     "group": "Paintings",
     "id": "dancer-and-koi",
-    "title": "Dancer and Koi",
+    "title": "Dancing Lily",
     "alt": "A dancer in white above a pond with koi and lily pads.",
     "width": 477,
-    "height": 640
+    "height": 640,
+    "description": "This piece depicts a ballet dancer floating on the water like a water lily. This painting is rooted in nature; I harvest my inspiration from nature and create a world on canvas. Through this painting, I tried to capture the creativity and imagination of children.\n\tThe growth patterns of a water lily are a metaphor for my own yearning to break free from my limitations. Though shrouded in darkness, the water lily’s stems yearn for the water's surface. The flowers that breach the murky water's surface symbolize breaking free from an inextricable situation.",
+    "medium": "Oil paint",
+    "year": "2023",
+    "location": "Home"
   },
   {
     "group": "Paintings",
     "id": "paper-cranes",
-    "title": "Paper Cranes",
+    "title": "Paper Crane",
     "alt": "A child in blue folds paper beneath a flying crane.",
     "width": 477,
-    "height": 640
+    "height": 640,
+    "description": "For this piece, I folded an origami crane and drew it from direct observation. I used watercolor and a background that reflects Chinese art to achieve the effect of a child’s imaginary world. The act of transforming the paper into a real crane parallels my own art-making process.",
+    "medium": "Watercolor"
   },
   {
     "group": "Drawings",
     "id": "pagoda-study",
-    "title": "Pagoda Composition",
+    "title": "Internal Still Life",
     "alt": "A monochrome composition with a pagoda, a toy, and eyeglasses.",
     "width": 509,
-    "height": 640
+    "height": 640,
+    "description": "In this piece, I used ink with creative tools such as a brush and stick to create various textures and explore unique compositions.",
+    "medium": "Ink"
   },
   {
     "group": "Drawings",
@@ -77,7 +110,9 @@
     "title": "Composition Studies I",
     "alt": "Two framed pencil studies of a still life from different viewpoints.",
     "width": 462,
-    "height": 640
+    "height": 640,
+    "description": "Created through direct observation, this collection of thumbnail sketches explores various compositions and angles of still-life objects. These sketches were prep work for the Internal Still Life.",
+    "dimensions": "10 × 7 (units not specified)"
   },
   {
     "group": "Drawings",
@@ -85,7 +120,9 @@
     "title": "Composition Studies II",
     "alt": "Four pencil studies exploring angle, close-up, and asymmetry.",
     "width": 480,
-    "height": 640
+    "height": 640,
+    "description": "Created through direct observation, this collection of thumbnail sketches explores various compositions and angles of still-life objects. These sketches were prep work for the Internal Still Life.",
+    "dimensions": "10 × 7 (units not specified)"
   },
   {
     "group": "Drawings",
