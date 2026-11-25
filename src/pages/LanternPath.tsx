@@ -1,4 +1,4 @@
-import { Suspense, useMemo, useState, useEffect, useRef } from 'react'
+import { Suspense, useMemo, useState, useEffect, useLayoutEffect, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import RoomLoading from '../components/RoomLoading'
 import { useProgress } from '@react-three/drei/core/Progress.js'
@@ -375,23 +375,14 @@ function Projection({ video, onExpand }: { video: HTMLVideoElement; onExpand: ()
   </>
 }
 function RoomReady({ onReady }: { onReady: () => void }) {
-  const frames = useRef(0)
-  useFrame(() => {
-    frames.current++
-    if (frames.current === 2) onReady()
-  })
+  useLayoutEffect(() => { onReady() }, [onReady])
   return null
 }
 export default function LanternPath() {
   const [mode,setMode] = useState('room')
   const [ready,setReady] = useState(false)
-  const [loadingVisible,setLoadingVisible] = useState(true)
   const { progress, errors } = useProgress()
-  useEffect(() => {
-    if (!ready) return
-    const timeout = window.setTimeout(()=>setLoadingVisible(false),700)
-    return ()=>clearTimeout(timeout)
-  },[ready])
+
   const location = useLocation()
   const [category,setCategory] = useState<string | null>(()=>new URLSearchParams(location.search).get('gallery')==='artworks'?'Artworks':null)
   const [expanded,setExpanded] = useState(false)
@@ -422,7 +413,7 @@ export default function LanternPath() {
     return () => window.removeEventListener('keydown',close)
   },[mode])
   return <main className="room-viewport" aria-busy={!ready}>
-    {loadingVisible && <RoomLoading progress={ready ? 100 : progress} failed={errors.length > 0} leaving={ready} />}
+    {!ready && <RoomLoading progress={progress} failed={errors.length > 0} />}
     {mode === 'window' && <div className="window-exit-blend" style={{backgroundImage: `url(${import.meta.env.BASE_URL}art/01-window-view.png)`}} />} 
     <Canvas gl={{ toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: CONFIG.lighting.exposure }} shadows dpr={[1,2]} camera={{position:CONFIG.camera.position as [number,number,number],fov:CONFIG.camera.fov}}>
       <color attach="background" args={['#16151b']} />
