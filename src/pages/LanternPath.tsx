@@ -1,7 +1,7 @@
 import { Suspense, useMemo, useState, useEffect, useLayoutEffect, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import RoomLoading from '../components/RoomLoading'
-import { useProgress } from '@react-three/drei/core/Progress.js'
+import { useRoomAssets } from './roomAssets'
 import { Html } from '@react-three/drei/web/Html.js'
 import { useGLTF } from '@react-three/drei/core/Gltf.js'
 import { useTexture } from '@react-three/drei/core/Texture.js'
@@ -20,14 +20,14 @@ const CONFIG = {
 function Box({ at, size, color, roughness = .8 }: { at: [number, number, number]; size: [number, number, number]; color: string; roughness?: number }) {
   return <mesh position={at} castShadow receiveShadow><boxGeometry args={size} /><meshStandardMaterial color={color} roughness={roughness} /></mesh>
 }
-function Projector({ onOpen }: { onOpen: () => void }) {
+function Projector({ onOpen, url }: { onOpen: () => void; url: string }) {
   const [hovered, setHovered] = useState(false)
   useEffect(() => {
     if (!hovered) return
     document.body.style.cursor = 'pointer'
     return () => { document.body.style.cursor = '' }
   }, [hovered])
-  const { scene } = useGLTF(import.meta.env.BASE_URL + 'models/projector.glb')
+  const { scene } = useGLTF(url)
   const model = useMemo(() => {
     const copy = scene.clone()
     copy.rotation.y = -Math.PI / 2
@@ -168,15 +168,15 @@ function ProjectPanel({ category, onClose }: {category: string; onClose:()=>void
   </dialog>
 }
 
-function Room({ onProjector, onWindow, mode, onCategory }: { onProjector: () => void; onWindow: () => void; mode: string; onCategory: (category: string) => void }) {
+function Room({ onProjector, onWindow, mode, onCategory, urls }: { urls: string[]; onProjector: () => void; onWindow: () => void; mode: string; onCategory: (category: string) => void }) {
   const [windowHovered,setWindowHovered] = useState(false)
   useEffect(()=>{
     if (!windowHovered) return
     document.body.style.cursor='pointer'
     return()=>{document.body.style.cursor=''}
   },[windowHovered])
-  const { scene } = useGLTF(import.meta.env.BASE_URL + 'models/library.glb')
-  const texture = useTexture(import.meta.env.BASE_URL + 'art/01-window-view.png')
+  const { scene } = useGLTF(urls[0])
+  const texture = useTexture(urls[2])
   texture.colorSpace = THREE.SRGBColorSpace
   const library = useMemo(() => {
     const copy = scene.clone()
@@ -280,7 +280,7 @@ function Room({ onProjector, onWindow, mode, onCategory }: { onProjector: () => 
           }
         `} />
     </mesh>
-    <Projector onOpen={onProjector} />
+    <Projector url={urls[1]} onOpen={onProjector} />
     <DeskObject label="Code" position={[-4.75,.81,5.93]} color="#3e5144" onOpen={()=>onCategory('Code')} />
     <DeskObject label="Data Analysis" position={[-4.63,.81,6.30]} color="#c8b99b" onOpen={()=>onCategory('Data Analysis')} />
     <DeskObject label="Artworks" position={[-3.66,.81,6.15]} color="#783f37" onOpen={()=>onCategory('Artworks')} />
@@ -387,7 +387,7 @@ export default function LanternPath() {
   const [pan,setPan] = useState(0)
   const gesture = useRef({ x:0, pan:0, dragging:false, moved:false })
   const [ready,setReady] = useState(false)
-  const { progress, errors } = useProgress()
+  const { progress, urls, error } = useRoomAssets()
 
   const location = useLocation()
   const [category,setCategory] = useState<string | null>(()=>new URLSearchParams(location.search).get('gallery')==='artworks'?'Artworks':null)
@@ -437,12 +437,12 @@ export default function LanternPath() {
         gesture.current.moved=false
       }
     }}>
-    {!ready && <RoomLoading progress={progress} failed={errors.length > 0} />}
+    {!ready && <RoomLoading progress={progress} failed={error} />}
     {mode === 'window' && <div className="window-exit-blend" style={{backgroundImage: `url(${import.meta.env.BASE_URL}art/01-window-view.png)`}} />} 
-    <Canvas gl={{ toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: CONFIG.lighting.exposure }} shadows dpr={[1,2]} camera={{position:CONFIG.camera.position as [number,number,number],fov:CONFIG.camera.fov}}>
+    <Canvas gl={{ toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: CONFIG.lighting.exposure }} shadows dpr={[1,matchMedia('(pointer: coarse)').matches ? 1.25 : 1.75]} camera={{position:CONFIG.camera.position as [number,number,number],fov:CONFIG.camera.fov}}>
       <color attach="background" args={['#16151b']} />
       <CameraMove pan={pan} mode={mode} onArrive={()=>navigate('/')} />
-      <Suspense fallback={null}><RoomReady onReady={()=>setReady(true)} /><Room onCategory={setCategory} mode={mode} onProjector={()=>{setIndex(0);setMode('video');void video.play().catch(()=>{})}} onWindow={()=>setMode('window')} /></Suspense>
+      {urls && <Suspense fallback={null}><RoomReady onReady={()=>setReady(true)} /><Room urls={urls} onCategory={setCategory} mode={mode} onProjector={()=>{setIndex(0);setMode('video');void video.play().catch(()=>{})}} onWindow={()=>setMode('window')} /></Suspense>}
       {mode === 'video' && <Projection video={video} onExpand={()=>{video.pause();setExpanded(true)}} />}
     </Canvas>
     {mode === 'video' && <div className="projection-controls">
